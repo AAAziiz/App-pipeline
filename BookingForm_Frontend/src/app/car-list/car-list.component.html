@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>All Cars Available</h2>
+    </div>
+    <div class="panel-body">
+      <table id="datatable-example" class="display" cellspacing="0" width="100%">
+
+        <thead>
+          <tr>
+            <th >car Type</th>
+            <th >AWD</th>
+            <th >Car Class</th>
+          
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of cars">
+            <td>{{car.cartype}}</td>
+            <td>{{car.awd}}</td>
+            <td>{{car.carclass}}</td>
+            
+
+            <td>
+                <button style='margin-right:16px' (click)="bookCar(car.id)" class="btn btn-success" style="margin-left: 10px">Book car</button>
+            </td>
+            
+              
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+    
+    

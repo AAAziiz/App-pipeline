@@ -1,0 +1,13 @@
+# Ignore node_modules and Angular dist
+BookingForm_Frontend/node_modules/
+BookingForm_Frontend/dist/
+
+# Ignore Maven/Gradle build files in Spring Boot
+Test_Backend_JAVA/target/
+Test_Backend_JAVA/build/
+
+
+# Ignore IDE files
+*.iml
+.idea/
+.vscode/

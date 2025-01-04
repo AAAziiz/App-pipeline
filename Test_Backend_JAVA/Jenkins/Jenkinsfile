@@ -1,0 +1,77 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    environment {
+        DOCKER_COMPOSE_FILE = 'Containerization/DOCKER_COMPOSE_FILE'
+    }
+    triggers {
+        pollSCM '*/1 * * * *'
+    }
+    stages {
+        stage('Check Java Version') {
+            steps {
+                sh 'java -version'
+                echo 'Java version is checked'
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                git credentialsId: '00445cc6-fdbd-4c9d-a46c-743ce3a67806', url: 'https://github.com/Arwa601/Test_Backend_JAVA', branch: 'test'
+            }
+        }
+
+        stage('Scan and Build Jar File') {
+                    steps {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                            withSonarQubeEnv(installationName: 'Production sonarQubeScanner', credentialsId: 'SonarQubeToken') {
+                                sh """
+                                mvn clean verify sonar:sonar \
+                                  -Dsonar.projectKey=BookingForm \
+                                  -Dsonar.projectName='BookingForm' \
+                                  -Dsonar.host.url=http://localhost:9000 \
+                                  -Dsonar.token=sqp_8d4e63c449f307c714b619584cd7452fab0c6d5c
+                                """
+                            }
+                        }
+                    }
+         }
+
+
+        stage('Build Docker Images') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+                sh 'docker compose build app dbmariadb'
+            }
+        }
+
+        stage('Run Services') {
+            steps {
+                sh 'docker compose -f ${DOCKER_COMPOSE_FILE} up --remove-orphans -d'
+            }
+        }
+
+        stage('Check Containers') {
+            steps {
+                sh 'docker ps -a'
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+                    }
+                    sh 'docker tag my_java17_app:latest arwa409/MyJava17_app:latest'
+                    sh 'docker tag mariadb:10.4.32 arwa409/mariadb:10.4.32'
+                    sh 'docker push arwa409/MyJava17_app:latest'
+                    sh 'docker push arwa409/mariadb:10.4.32'
+                    sh 'docker logout'
+                }
+            }
+        }
+    }
+}

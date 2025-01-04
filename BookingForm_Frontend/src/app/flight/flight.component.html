@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Booking Form HTML Template</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="./flight.component.css" />
+	
+	
+
+</head>
+
+<body>
+	<div id="menu">
+		<nav>
+			<div class="logo">
+				<a routerLink="/login"><img src="assets/images/logos-plane/logo-white.png" alt="Logo" ></a>
+			</div>
+			<input id="nav-toggle" type="checkbox">
+			<ul class="links">
+				<li><a  routerLink="/login">Home</a></li>
+				<li><a href="https://skybooking.uk/about-us">About</a></li>
+				<li><a routerLink="/blog">Blog</a></li>
+				<li class="dropdown">
+					<a routerLink="/login">Pages &#9662;</a>
+					<div class="dropdown-content">
+						<a routerLink="/login">Sigunp Page</a>
+						<a  routerLink="/pay">Payement</a>
+					</div>
+				</li>
+				<li><a href="https://skybooking.uk/contact">Contacts</a></li>
+				<li class="search-icon"><a href=""><i class="fas fa-search"></i></a></li>
+
+			</ul>
+			<label for="nav-toggle" class="icon-burger">
+				<div class="line"></div>
+				<div class="line"></div>
+				<div class="line"></div>
+			</label>
+		</nav>
+	</div>
+	<br><br> <br> 
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="form-group buttons-container" >
+					<button id="flightsButton" class="logo-button" >
+						<img src="../assets/images/planelogo.jpg" alt="Plane Logo">
+						<span>FLIGHTS</span>
+					</button>
+					<button id="hotelButton" class="logo-button" >
+						<img src="../assets/images/hotel.jpeg" alt="Plane Logo">
+						<span>HOTELS</span>
+					</button>
+					
+					<button id="carButton" class="logo-button">
+						<img src="../assets/images/carlogo.jpg" alt="Car Logo">
+						<span>CAR HIRE</span>
+					</button>
+				</div>
+				
+				<div class="row">
+					<div class="booking-form" id="flightForm">
+						<form #Registerflight="ngForm" (ngSubmit)="registerFlight()">
+								<div class="form-group">
+									<div class="form-checkbox">
+										<label for="roundtrip">
+										  <input type="radio" id="roundtrip" name="flight-type" [(ngModel)]="flight.flightType" value="roundtrip">
+										  <span></span>Roundtrip
+										</label>
+										<label for="one-way">
+										  <input type="radio" id="one-way" name="flight-type" [(ngModel)]="flight.flightType" value="one-way">
+										  <span></span>One way
+										</label>
+										<label for="multi-city">
+										  <input type="radio" id="multi-city" name="flight-type" [(ngModel)]="flight.flightType" value="multi-city">
+										  <span></span>Multi-City
+										</label>
+									  </div>
+									  <div id="flight">
+									  <label class="checkbox-inline">
+										<input name="input-group-radio" type="checkbox" class="checkbox-custom" name="direct"  [(ngModel)]="flight.direct_flight">
+										<span class="checkbox-custom-dummy"></span>
+										Directs Flights Only
+									 </label>
+									</div>
+									
+									  
+								</div>
+								<div class="row"> 
+									<div class="col-md-4">
+										<div class="form-group">
+											<span class="form-label">From</span>
+											<input class="form-control" type="text" placeholder="City or airport" name="from"  [(ngModel)]="flight.fromcity">
+	
+										</div>
+										<label class="checkbox-inline">
+											<input name="input-group-radio" type="checkbox" class="checkbox-custom" name="addfrom"  [(ngModel)]="flight. addNearbyAirportsFrom">
+											<span class="checkbox-custom-dummy"></span>
+											Added Nearby Airports
+										 </label>
+									</div>
+									
+									
+									<div class="col-md-4">
+										<div class="form-group">
+											<span class="form-label">To</span>
+											<input class="form-control" type="text" placeholder="City or airport" name="to"  [(ngModel)]="flight.tocity">
+										</div>
+										<label class="checkbox-inline">
+											<input name="input-group-radio" type="checkbox" class="checkbox-custom" name="addto"  [(ngModel)]="flight. addNearbyAirportsTo">
+											<span class="checkbox-custom-dummy"></span>
+											Added Nearby Airports
+										 </label>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<span class="form-label">Cabin class</span>
+											<select class="form-control" name="travel-class" [(ngModel)]="flight.travelClass">
+												<option>Economy class</option>
+												<option>Business class</option>
+												<option>First class</option>
+												<option>Premium Economy</option>
+
+											</select>
+											<span class="select-arrow"></span>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-2">
+										<div class="form-group">
+											<span class="form-label">Departure</span>
+											<input class="form-control" type="date" required name="departure"  [(ngModel)]="flight.departureDate">
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<span class="form-label">Return</span>
+											<input class="form-control" type="date" required name="return"  [(ngModel)]="flight.returnDate">
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<span class="form-label">Adults (18+)</span>
+											<input class="form-control" type="number"  name="children" [(ngModel)]="flight.adults" min="0">
+
+										
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<span class="form-label">Children</span>
+											<input class="form-control" type="number"  name="children" [(ngModel)]="flight.children" min="0">
+
+										</div>
+									</div>	
+									<div class="col-md-3">
+										<div class="form-btn">
+											<button class="submit-btn">Show flights</button>
+										</div>
+									</div>
+								</div>
+						</form>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<div class="row">
+					<div class="booking-form" id="hotelRentalForm">
+					  <form #Registerhotel="ngForm" (ngSubmit)="registerHotel()">	
+						<div class="form-group">
+							<div class="form-checkbox">
+								<label for="work">
+									<input type="radio" id="work"name="hotel-type" [(ngModel)]="hotel.hotel_Type" value="work">
+									<span></span>Work
+								</label>
+								<label for="vacation">
+									<input type="radio" id="vacation" name="hotel-type" [(ngModel)]="hotel.hotel_Type" value="vacation">
+									<span></span>Vacation
+								</label>
+								
+									
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<span class="form-label">Destination</span>
+									<input class="form-control" type="text" placeholder="City " name="destination"  [(ngModel)]="hotel.destination" >
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<span class="form-label">Rooms</span>
+									<input class="form-control" type="number" name="rooms" [(ngModel)]="hotel.rooms" min="0" >
+									
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<span class="form-label">Star Rating</span>
+									<select class="form-control" name="rating" [(ngModel)]="hotel.star_rating">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+
+
+									</select>
+									<span class="select-arrow"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<div class="form-group">
+									<span class="form-label">Arrival</span>
+									<input class="form-control" type="date" required name="arrival" [(ngModel)]="hotel.arrival_date">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<span class="form-label">Leave</span>
+									<input class="form-control" type="date" required name="leave" [(ngModel)]="hotel.leave_date">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<span class="form-label">Adults (16+)</span>
+									<input class="form-control" type="number" name="adult" [(ngModel)]="hotel.adults" min="0">
+								
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<span class="form-label">Children (0-17)</span>
+									<input class="form-control" type="number" name="childrens" [(ngModel)]="hotel.children" min="0">
+									
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-btn">
+									<button class="submit-btn">Show Hotels</button>
+								</div>
+							</div>
+						</div>
+					  </form>
+					</div>
+				   </div>
+				   
+
+
+
+				<div class="row">
+					<div class="booking-form" id="carRentalForm">
+					  <form #Registercar="ngForm" (ngSubmit)="registerCar()">	
+						<div class="form-wrap radio-inline-wrapper">
+							<label class="checkbox-inline">
+							   <input name="input-group-radio" type="checkbox" class="checkbox-custom" name="return" [(ngModel)]="car.location_return">
+							   <span class="checkbox-custom-dummy"></span>
+							   Return car to different location
+							</label>
+						   </div><br>
+				
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<span class="form-label">Select car</span>
+									<select class="form-control" name="type" [(ngModel)]="car.cartype" >
+										<option>Toyota</option>
+										<option>Mercedes</option>
+										<option>BMW</option>
+										<option>Suzuki</option>
+
+									</select>
+									<span class="select-arrow"></span>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<span class="form-label">AWD</span>
+									<input class="form-control" type="text" placeholder="000-000-000" name="awd"  [(ngModel)]="car.awd">
+
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<span class="form-label">Car Class</span>
+									<select class="form-control" name="classcar" [(ngModel)]="car.carclass">
+										<option>Convertable</option>
+										<option>Coupe</option>
+										<option>MPV</option>
+										<option>SUV</option>
+										<option>Crossover</option>
+										<option>Sedan</option>
+
+
+
+
+									</select>
+									<span class="select-arrow"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<div class="form-group">
+									<span class="form-label">Pick-up Date</span> <br>
+									<input class="form-control" type="date" required name="pick" [(ngModel)]="car.pick_date">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<span class="form-label">Drop-off Date</span> <br>
+									<input class="form-control" type="date" required name="drop" [(ngModel)]="car.drop_date">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<span class="form-label">Passengers</span> <br>
+									<input class="form-control" type="number" placeholder="passengers" name="passenger"  [(ngModel)]="car.passengers" min="0">
+
+								</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-btn"> <br>
+									<button class="submit-btn">Show Cars</button>
+								</div>
+							</div>
+						</div>
+					  </form>
+					</div>
+                </div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="logos">
+	<div class="wrapper">
+        <button class="arrow prev"><i class="ri-arrow-left-s-line"></i></button>
+        <button class="arrow next"><i class="ri-arrow-right-s-line"></i></button>
+        <div class="card-wrapper">
+            <div class="card-item">
+                <a href="https://www.emirates.com/tn/english/book/?gclid=EAIaIQobChMI-9mLsq6sgQMVOQUGAB0TjgUDEAAYASAAEgJI9fD_BwE&gclsrc=aw.ds">
+					<img src="../assets/images/logos-plane/emirates.png" alt="">
+                </a>
+            </div>
+			<div class="card-item">
+                <a href="https://wwws.airfrance.tn/">
+                <img src="../assets/images/logos-plane/france.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+                <a href="https://www.omeilleursprix.com/?aw_campaign_id=146534390&gclid=EAIaIQobChMIxt7QtK6sgQMVAwQGAB1XrwxSEAAYASAAEgLQcPD_BwE">
+                    <img src="../assets/images/logos-plane/british.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+                <a href="https://www.qatarairways.com/en/homepage.html?CID=SXTN23456871M&account=Google-AFRICA-TN-EN-Brand&campaign=TN-Brand-Hero-EN_exact&adgroup=qatar+airways&term=qatar+airways&&&gclid=EAIaIQobChMIh9Cxua6sgQMV_JJoCR0BWQKdEAAYASAAEgLWuPD_BwE&gclsrc=aw.ds">
+                    <img src="../assets/images/logos-plane/qatar.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+                <a href="https://www.singaporeair.com/en_UK/sg/home?ref=1060652&affiliate_id=11128&ranMID=43929&ranEAID=3095669&ranSiteID=dquE8U2QoAw-kGO0JfUToW9B0JuhTvmu.g#/book/bookflight">
+                    <img src="../assets/images/logos-plane/singapore.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+                <a href="https://www.liligo.fr/vols/compagnies-aeriennes/turkish-airlines?gclid=EAIaIQobChMImvKzv66sgQMVxLfVCh3lawUGEAAYASAAEgKoZfD_BwE">
+                    <img src="../assets/images/logos-plane/turkish.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</div> <br> <br>
+<a href="https://www.yourwebsite.com" class="cta-link">Why people Choose Us?</a>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

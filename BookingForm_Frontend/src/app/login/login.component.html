@@ -1,0 +1,134 @@
+<head>
+  <link rel="stylesheet" href="./login.component.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<br><br><br>
+
+
+
+
+
+<body>
+  <div id="menu">
+		<nav>
+			<div class="logo">
+				<a routerLink="/login"><img src="assets/images/logos-plane/logo-white.png" alt="Logo" ></a>
+			</div>
+			<input id="nav-toggle" type="checkbox">
+			<ul class="links">
+				<li><a routerLink="/login" >Home</a></li>
+				<li><a href="https://skybooking.uk/about-us">About</a></li>
+				<li><a routerLink="/blog">Blog</a></li>
+				<li class="dropdown">
+					<a routerLink="/login">Pages &#9662;</a>
+					<div class="dropdown-content">
+						<a routerLink="/login">Sigunp Page</a>
+						<a  routerLink="/pay">Payement</a>
+					</div>
+				</li>
+				<li><a href="https://skybooking.uk/contact">Contacts</a></li>
+        <li class="search-icon"><a routerLink="/login" ><i class="fas fa-search"></i></a></li>
+
+			</ul>
+			<label for="nav-toggle" class="icon-burger">
+				<div class="line"></div>
+				<div class="line"></div>
+				<div class="line"></div>
+			</label>
+		</nav>
+	</div>
+
+<br><br>
+
+
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form #Registerform="ngForm" (ngSubmit)="RegisterUser()">
+        <h1>Create Account</h1>
+        <span>or use your email for registration</span>
+        <input type="text" placeholder="Name"  name="name" [(ngModel)]="user.name"/>
+        <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email"/>
+        <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" />
+        <button [disabled]="Registerform.form.invalid" type="submit" >Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form  #Loginform="ngForm" (ngSubmit)="LoginUser()">
+        <h1>Sign in</h1>
+        <span>or use your account</span>
+        <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" />
+        <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" />
+        <div *ngIf="msg" class="error-message" style="color:red">{{ msg }}</div>
+        <a href="#">Forgot your password?</a>
+        <button [disabled]="Loginform.form.invalid"  type="submit" >Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" (click)="togglePanel(false)">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Welcome to our platform</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" (click)="togglePanel(true)" >Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</body>
+<div id="logos">
+	<div class="wrapper">
+        <button class="arrow prev"><i class="ri-arrow-left-s-line"></i></button>
+        <button class="arrow next"><i class="ri-arrow-right-s-line"></i></button>
+        <div class="card-wrapper">
+            <div class="card-item">
+              <a href="https://www.emirates.com/tn/english/book/?gclid=EAIaIQobChMI-9mLsq6sgQMVOQUGAB0TjgUDEAAYASAAEgJI9fD_BwE&gclsrc=aw.ds">
+                <img src="../assets/images/logos-plane/emirates.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+              <a href="https://wwws.airfrance.tn/">
+              <img src="../assets/images/logos-plane/france.png" alt="">
+              </a>
+          </div>
+            <div class="card-item">
+              <a href="https://www.omeilleursprix.com/?aw_campaign_id=146534390&gclid=EAIaIQobChMIxt7QtK6sgQMVAwQGAB1XrwxSEAAYASAAEgLQcPD_BwE">
+                <img src="../assets/images/logos-plane/british.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+              <a href="https://www.qatarairways.com/en/homepage.html?CID=SXTN23456871M&account=Google-AFRICA-TN-EN-Brand&campaign=TN-Brand-Hero-EN_exact&adgroup=qatar+airways&term=qatar+airways&&&gclid=EAIaIQobChMIh9Cxua6sgQMV_JJoCR0BWQKdEAAYASAAEgLWuPD_BwE&gclsrc=aw.ds">
+                <img src="../assets/images/logos-plane/qatar.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+              <a href="https://www.singaporeair.com/en_UK/sg/home?ref=1060652&affiliate_id=11128&ranMID=43929&ranEAID=3095669&ranSiteID=dquE8U2QoAw-kGO0JfUToW9B0JuhTvmu.g#/book/bookflight">
+                <img src="../assets/images/logos-plane/singapore.png" alt="">
+                </a>
+            </div>
+            <div class="card-item">
+              <a href="https://www.liligo.fr/vols/compagnies-aeriennes/turkish-airlines?gclid=EAIaIQobChMImvKzv66sgQMVxLfVCh3lawUGEAAYASAAEgKoZfD_BwE">
+                <img src="../assets/images/logos-plane/turkish.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</div> <br> <br>
+<a href="https://www.yourwebsite.com" class="cta-link">Why people Choose Us?</a>
+
+
+
+
+
+
+
+
+  
+  

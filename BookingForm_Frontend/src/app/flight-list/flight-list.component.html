@@ -1,0 +1,45 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>All flights available</h2>
+    </div>
+    <div class="panel-body">
+      <table id="datatable-example" class="display" cellspacing="0" width="100%">
+
+        <thead>
+          <tr>
+            <th >Flight Id</th>
+            <th >Flight Type</th>
+            <th >From</th>
+            <th >To</th>
+            <th>Travel Class</th>
+            <th>Departure Date</th>
+            <th>Return Date</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of flights ">
+            <td>{{flight.id}}</td>
+            <td>{{flight.flightType}}</td>
+            <td>{{flight.fromcity}}</td>
+            <td>{{flight.tocity}}</td>
+            <td>{{flight.travelClass}}</td>
+            <td>{{flight.departureDate}}</td>
+            <td>{{flight.returnDate}}</td>
+
+
+            <td>
+                <button style='margin-right:16px' (click)="bookFlight(flight.id)" class="btn btn-success" style="margin-left: 10px">Book Flight</button>
+            </td>
+            
+              
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+    
+    
