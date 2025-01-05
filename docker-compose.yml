@@ -15,9 +15,11 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+        restart: true
 
       frontend:
         condition: service_healthy  
+        restart: true
 
     restart: always
     networks:
@@ -37,8 +39,8 @@ services:
       - app_network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
-      interval: 10s
-      timeout: 5s
+      interval: 30s
+      timeout: 25s
       retries: 5
 
   frontend:
@@ -48,7 +50,7 @@ services:
     image: app-front
     container_name: frontend
     ports:
-      - "91:80"
+      - "91:81"
     networks:
       - app_network    
 

@@ -11,3 +11,5 @@ Test_Backend_JAVA/build/
 *.iml
 .idea/
 .vscode/
+
+.codegpt
