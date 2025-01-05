@@ -20,9 +20,9 @@ pipeline {
         stage("Sonarqube Analysis "){ 
                     steps{
                         withSonarQubeEnv('Sonarqube') {
-                            sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=app-orchestration \
+                            sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=sonar-jenkins-project \
                             -Dsonar.java.binaries=. \
-                            -Dsonar.projectKey=app-orchestration '''
+                            -Dsonar.projectKey=sonar-jenkins-project '''
                         }
                     }
                 }
