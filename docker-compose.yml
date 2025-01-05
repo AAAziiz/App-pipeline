@@ -15,12 +15,11 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-        restart: true
 
       frontend:
         condition: service_healthy  
-        restart: true
 
+    restart: always
     networks:
       - app_network
 
