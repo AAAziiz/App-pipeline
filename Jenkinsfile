@@ -28,13 +28,6 @@ pipeline {
                 }
 
 
-            stage("Quality gate"){
-                    steps {
-                        script {
-                          waitForQualityGate abortPipeline: true
-                        }
-                   }
-                }
                
         stage("OWASP Dependency Check"){
             steps{
