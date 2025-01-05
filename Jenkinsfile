@@ -18,7 +18,7 @@ pipeline {
                 }
             }
 
-            stage('Push New Tag to Docker Hub') {
+            stage('Push New Tagged images to Docker Hub') {
             steps {
                     withCredentials([usernamePassword(credentialsId: 'secret', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
