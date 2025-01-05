@@ -4,6 +4,9 @@ pipeline {
         maven 'Maven' 
       
     }
+    environment { 
+        SCANNER_HOME = tool 'MySonarqubeScanner'
+    }
    
     stages{ 
          stage('Check Java Version') { 
@@ -16,10 +19,10 @@ pipeline {
 
         stage("Sonarqube Analysis "){ 
                     steps{
-                        withSonarQubeEnv('sonar-server') {
-                            sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=student \
+                        withSonarQubeEnv('Sonarqube') {
+                            sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=app-orchestration \
                             -Dsonar.java.binaries=. \
-                            -Dsonar.projectKey=student '''
+                            -Dsonar.projectKey=app-orchestration '''
                         }
                     }
                 }
@@ -28,7 +31,7 @@ pipeline {
             stage("quality gate"){
                     steps {
                         script {
-                          waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                          waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
                         }
                    }
                 }
@@ -52,7 +55,7 @@ pipeline {
 
 
             stage('Push New Tagged images to Docker Hub') {
-                
+
             steps {
                     withCredentials([usernamePassword(credentialsId: 'secret', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
