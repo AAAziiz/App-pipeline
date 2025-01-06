@@ -2,7 +2,6 @@ pipeline {
     agent any
     tools{ 
         maven 'Maven' 
-        dependencyCheck 'OWASP-DC'
       
     }
     environment { 
