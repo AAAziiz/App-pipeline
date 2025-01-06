@@ -27,15 +27,17 @@ pipeline {
                     }
                 }
        
-            stage("OWASP Dependency Check") {
+            tage ('OWASP Dependency-Check Vulnerabilities') {
             steps {
-                sh 'dependency-check.sh --purge'
-                
-                dependencyCheck additionalArguments: '--scan ./ --format XML ', odcInstallation: 'DP-Check'
-                
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+                dependencyCheck additionalArguments: ''' 
+                    -o "./" 
+                    -s "./"
+                    -f "ALL" 
+                    --prettyPrint''', odcInstallation: 'OWASP-DC'
+
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
-        }
+        }     
 
 
 
