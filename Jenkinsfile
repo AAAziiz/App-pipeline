@@ -28,13 +28,22 @@ pipeline {
                 }
 
 
+
+                stage('OWASP Dependency-Check Vulnerabilities') {
+      steps {
+        dependencyCheck additionalArguments: ''' 
+                    -o './'
+                    -s './'
+                    -f 'ALL' 
+                    --prettyPrint''', odcInstallation: 'DP-Check'
+        
+        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+      }
+    }
+
+
                
-        stage("OWASP Dependency Check"){
-            steps{
-                dependencyCheck additionalArguments: '--scan ./ --format XML ', odcInstallation: 'DP-Check'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
+        
 
 
 
@@ -66,6 +75,7 @@ pipeline {
         }
     }
 }
+        
        
     }
 
