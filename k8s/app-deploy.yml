@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deploy
+  labels:
+   app: backend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+      - name: backend-container
+        image: //////////
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8090
+        env:
+        - name: DB_HOST
+          value: mysqldb
+        - name: DB_NAME
+          value: codsoft-back
+        - name: DB_USERNAME
+          value: arwa
+        - name: DB_PASSWORD
+          value: arwa

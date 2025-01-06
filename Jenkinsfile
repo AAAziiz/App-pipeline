@@ -27,28 +27,6 @@ pipeline {
                     }
                 }
 
-
-
-                 stage('OWASP Dependency Check') {
-            steps {
-                dependencyCheck additionalArguments: '--scan target/', odcInstallation: 'DP-Check'
-            }
-        }
-
-        stage('Publish OWASP Dependency Check Report') {
-            steps {
-                publishHTML(target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'target',
-                    reportFiles: 'dependency-check-report.html',
-                    reportName: 'OWASP Dependency Check Report'
-                ])
-            }
-        }
-
-
                
         
 
