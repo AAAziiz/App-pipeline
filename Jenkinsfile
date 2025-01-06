@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools{ 
         maven 'Maven' 
+        dependencyCheck 'OWASP-DC'
       
     }
     environment { 
@@ -27,7 +28,7 @@ pipeline {
                     }
                 }
        
-            tage ('OWASP Dependency-Check Vulnerabilities') {
+            stage ('OWASP Dependency-Check Vulnerabilities') {
             steps {
                 dependencyCheck additionalArguments: ''' 
                     -o "./" 
