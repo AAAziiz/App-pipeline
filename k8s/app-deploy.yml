@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: //////////
+        image: arwa/app-back
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8090
