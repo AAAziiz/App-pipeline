@@ -27,12 +27,16 @@ pipeline {
                     }
                 }
        
-        stage("OWASP Dependency Check"){
-            steps{
+            stage("OWASP Dependency Check") {
+            steps {
+                sh 'dependency-check.sh --purge'
+                
                 dependencyCheck additionalArguments: '--scan ./ --format XML ', odcInstallation: 'DP-Check'
+                
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+
 
 
                
