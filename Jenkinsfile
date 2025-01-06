@@ -26,15 +26,7 @@ pipeline {
                         }
                     }
                 }
-       
-            stage ('OWASP Dependency-Check Vulnerabilities') {
-            steps {
-                dependencyCheck additionalArguments:'' , odcInstallation: 'OWASP-DC'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }     
-
-
+    
 
                
         
@@ -56,12 +48,12 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'secret', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
                 docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} 
-                docker tag app-back azziiz/app-back:latest
-                docker push azziiz/app-back:latest
+                docker tag app-back arwa/app-back:latest
+                docker push arwa/app-back:latest
 
 
-                 docker tag app-front azziiz/app-front:latest
-                docker push azziiz/app-front:latest
+                 docker tag app-front arwa/app-front:latest
+                docker push arwa/app-front:latest
 
 
                 
