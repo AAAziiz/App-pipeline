@@ -12,7 +12,7 @@ pipeline {
          stage('Check Java Version') { 
             steps {
                 sh 'java -version' 
-                echo 'java version is'
+                echo 'java version is :'
             }
         }
 
